@@ -10,8 +10,8 @@ Fung YC. A model of the lung structure and its validation. J Appl Physiol (1985)
 
 "
 Class {
-	#name : 'FungVoxel',
-	#superclass : 'Voxel',
+	#name : 'FungCell',
+	#superclass : 'Cell',
 	#category : 'Lungsim',
 	#package : 'Lungsim'
 }
