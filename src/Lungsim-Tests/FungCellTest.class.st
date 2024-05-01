@@ -12,15 +12,15 @@ Class {
 FungCellTest >> testAccessLocation [
 	"access voxel location in grid space, as a collection"
 	| fv |
-	fv := FungCell location: { 1 . 2 . 3 } .
-	self assert: (fv location) equals: { 1 . 2 . 3 }
+	fv := FungCell euclideanCoordinates: ( Point3d x: 1 y: 2 z: 3 ) .
+	self assert: (fv euclideanCoordinates) equals: ( Dictionary newFrom:{ #x -> 1 . #y -> 2 . #z -> 3 } )
 ]
 
 { #category : 'tests' }
 FungCellTest >> testCreateWithLocation [
 	"tests custom initializer with location"
 	| fv |
-	fv := FungCell location: { 1 . 2 . 3 } .
+	fv := FungCell euclideanCoordinates: ( Point3d x: 1 y: 2 z: 3 ) .
 	self deny: fv equals: nil
 ]
 
