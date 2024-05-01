@@ -22,7 +22,10 @@ Class {
 Honeycomb class >> initializeWithDefaults [ 
 	"initialize a default honeycomb"
 | cellCount originCell recentCells |
-DefaultCellCount := 480000000 .
+"^self basicNew"
+
+"to transfer in instance side method"
+DefaultCellCount := 480000 . "480000000"
 originCell := #(0 0 0) .
 cells := Set newFromArray: { originCell } .
 recentCells := cells deepCopy .
