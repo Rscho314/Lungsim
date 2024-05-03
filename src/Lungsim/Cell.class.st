@@ -16,11 +16,11 @@ Class {
 	#package : 'Lungsim'
 }
 
-{ #category : 'instance creation' }
-Cell class >> euclideanCoordinates: aPoint3d [
-	"support custom initializer"
+{ #category : 'initialization' }
+Cell class >> initializeWithDefaults [ 
+	"default initializer"
 ^self basicNew
-initializeWithEuclideanCoordinates: aPoint3d
+	initializeWithPoint3d: ( Point3d x: 0 y: 0 z: 0 )
 yourself.
 ]
 
@@ -36,32 +36,33 @@ self shouldNotImplement
 ]
 
 { #category : 'instance creation' }
-Cell class >> x: aNonNegativeIntegerx y: aNonNegativeIntegery z: aNonNegativeIntegerz [
-	"class helper for custom initializer"
-	"self flag: #hack inefficient since it takes 3 ints, makes a collection then assigns 3 ints" .
-^self basicNew 
-	initializeWithEuclideanCoordinates: ( Point3d x: aNonNegativeIntegerx y: aNonNegativeIntegery z: aNonNegativeIntegerz )
+Cell class >> point3d: aPoint3d [
+	"support custom initializer"
+^self basicNew
+initializeWithPoint3d: aPoint3d
 yourself.
 ]
 
-{ #category : 'accessing' }
-Cell >> euclideanCoordinates [
-	"access voxel location in grid space, as a collection"
-^location euclideanCoordinates 
-]
+{ #category : 'instance creation' }
+Cell class >> x: aNonNegativeIntegerx y: aNonNegativeIntegery z: aNonNegativeIntegerz [
+	
+	"class helper for custom initializer"
 
-{ #category : 'initialization' }
-Cell >> initializeWithDefaults [ 
-"default initializer"
-location := Point3d x: 0 y: 0 z: 0 .
-diameter := 1 . "diameter: 0.2 mm = 1 cell of grid space. Base unit is 10th of millimeter"
-^self
+	^self basicNew 
+		initializeWithPoint3d: ( Point3d x: aNonNegativeIntegerx y: aNonNegativeIntegery z: aNonNegativeIntegerz )
+	yourself.
 ]
 
 { #category : 'private' }
-Cell >> initializeWithEuclideanCoordinates: aPoint3d [
+Cell >> initializeWithPoint3d: aPoint3d [
 "Grid location is immutable, so this must be an initializer"
 diameter := 1 .
 location := aPoint3d .
 ^self
+]
+
+{ #category : 'accessing' }
+Cell >> xyz [
+	"access voxel location in grid space, as a collection"
+^location 
 ]

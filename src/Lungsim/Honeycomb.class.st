@@ -8,34 +8,30 @@ I define messages dealing with either observation or transformation in 3D space.
 Class {
 	#name : 'Honeycomb',
 	#superclass : 'Object',
-	#classVars : [
-		'DefaultCellCount'
-	],
-	#classInstVars : [
-		'cells'
-	],
 	#category : 'Lungsim',
 	#package : 'Lungsim'
 }
 
-{ #category : 'class initialization' }
-Honeycomb class >> initializeWithDefaults [ 
-	"initialize a default honeycomb"
-| cellCount originCell recentCells |
-"^self basicNew"
+{ #category : 'initialization' }
+Honeycomb class >> initializeWithDefaults [
 
-"to transfer in instance side method"
-DefaultCellCount := 480000 . "480000000"
-originCell := #(0 0 0) .
-cells := Set newFromArray: { originCell } .
-recentCells := cells deepCopy .
-cellCount := cells size .
-self flag: #TODO .
-(cellCount < DefaultCellCount) whileTrue: [ recentCells do: [ :cell |  cells add: 1 ] ]
+	self subclassResponsibility 
 ]
 
-{ #category : 'helper' }
-Honeycomb class >> neighbourCells: anArray [
-	"compute the center of neibour cells for a given honeycomb location"
-self flag: #TODO 
+{ #category : 'testing' }
+Honeycomb class >> isAbstract [
+
+	^ self == Honeycomb
+]
+
+{ #category : 'instance creation' }
+Honeycomb class >> new [ 
+
+	self shouldNotImplement 
+]
+
+{ #category : 'private' }
+Honeycomb >> initializeWithSetofCells: aSetofCells [
+
+	self subclassResponsibility 
 ]
