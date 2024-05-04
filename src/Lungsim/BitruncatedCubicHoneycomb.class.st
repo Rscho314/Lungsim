@@ -71,6 +71,22 @@ BitruncatedCubicHoneycomb class >> neighborCells: aCell [
 	^neighbors 
 ]
 
+{ #category : 'instance creation' }
+BitruncatedCubicHoneycomb class >> x: aNaturalX y: aNaturalY z: aNaturalZ [
+	"initialize honeycomb on a bounded 3d grid"
+
+	| grid |
+		
+	grid := 0 to: ( aNaturalX - 1 ) do: [ 
+					0 to: ( aNaturalY - 1 ) do: [
+						0 to: ( aNaturalZ - 1 ) do: [
+							{
+								2 * aNaturalX .
+								aNaturalY + aNaturalZ * 2 .
+								aNaturalX sqrt - (aNaturalY sqrt) + (aNaturalZ sqrt)
+							}]]] asArray .
+]
+
 { #category : 'private' }
 BitruncatedCubicHoneycomb >> initializeWithSetofCells: aSetofCells [
 
